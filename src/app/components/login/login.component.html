@@ -2,16 +2,16 @@
 <div class="parent">
     <div class="child">
 
-        <form>
+        <form [formGroup='loginForm']>
             <label>Email:</label>
-            <input type="text">
+            <input type="text" formControlName="email">
             <br>
 
             <label>Password:</label>
-            <input type="password">
+            <input type="password" formControlName="password">
             <br><br>
 
-            <button>Login</button>
+            <button (click)="login()">Login</button>
         </form>
 
 
