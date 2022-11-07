@@ -1,0 +1,13 @@
+.parent{
+    height: 160vh;
+    width: 110vw;
+    display: flex;
+    background-color: chartreuse;
+}
+.child{
+    width: 17%;
+    height: 100%;
+    background-color: darkred;
+    color: blueviolet;
+    
+}
