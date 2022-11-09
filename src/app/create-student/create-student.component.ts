@@ -15,6 +15,15 @@ export class CreateStudentComponent implements OnInit {
       mobile:new FormControl(null,[Validators.min(1000000000),Validators.maxLength(9999999999)]),
       email:new FormControl(),
       batch:new FormControl(),
+      address:new FormGroup(
+        {
+          city:new FormControl(),
+          mandal:new FormControl(),
+          district:new FormControl(),
+          state:new FormControl(),
+          pincode:new FormControl()
+        }
+      )
     }
   )
 
