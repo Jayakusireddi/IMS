@@ -16,5 +16,15 @@ export class StudentService {
   getStudents():Observable<any>{
     return this._httpClient.get("https://62b9299dff109cd1dc8ca34f.mockapi.io/students")
   }
+
+  getPagedStudents(page:number):Observable<any>{
+    return this._httpClient.get("https://62b9299dff109cd1dc8ca34f.mockapi.io/students?limit=15&page=1"+page);
+  }
+
+  getSortedStudents(column:string,order:string):Observable<any>{
+    return this._httpClient.get('https://62b9299dff109cd1dc8ca34f.mockapi.io/students'+'?sortBy='+column+'&order='+order);
+  }
+
+
    
 }

@@ -9,6 +9,10 @@ import { StudentService } from '../student.service';
 export class AllStudentsComponent implements OnInit {
 
   public students:any = [];
+  public term:string = "";
+
+  public column: string="";
+  public order: string="";
 
   constructor(private _studentService:StudentService) {
     this._studentService.getStudents().subscribe(
@@ -22,6 +26,28 @@ export class AllStudentsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  pagination(page:number){
+    this._studentService.getPagedStudents(page).subscribe(
+      (data:any)=>{
+        this.students = data;
+      },
+      (err:any)=>{
+        alert("Internal server error");
+      }
+    )
+  }
+
+  sort(){
+    this._studentService.getSortedStudents(this.column, this.order).subscribe(
+      (data:any)=>{
+        this.students = data;
+      },
+      (err:any)=>{
+        alert('Internal server error')
+      }
+    )
   }
 
 }

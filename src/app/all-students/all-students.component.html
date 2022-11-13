@@ -1,26 +1,43 @@
+<select [(ngModel)]="column">
+    <option>name</option>
+    <option>gender</option>
+</select>
+<select [(ngModel)]=order>
+    <option>asc</option>
+    <option>desc</option>
+</select>
+
+<button (click)="sort()">Sort</button><br>
+
 <table border="table-dark">
     <thead>
         <tr>
-            <th>CreatedAt</th>
-            <th>name</th>
-            <th>Avatar</th>
-            <th>Id</th>
+            <th>Name</th>
             <th>Gender</th>
-            <th>Mobile</th>
+            <th>phone</th>
+            <th>Batch</th>
+            <th>From</th>
+            <th>CompanyName</th>
+            <th>Package</th>
             <th>Email</th>
-            <th>Address</th>
     </tr> </thead>
     <tbody>
         <tr *ngFor="let student of students">
-            <td>{{ student.createdAt }}</td>
             <td>{{ student.name }}</td>
-            <td>{{ student.avatar }}</td>
-            <td>{{ student.id }}</td>
             <td>{{ student.gender}}</td>
-            <td>{{ student.mobile }}</td>
+            <td>{{ student.phone}}</td>
+            <td>{{ student.batch}}</td>
+            <td>{{ student.address}}</td>
+            <td>{{ student.companyname }}</td>
+            <td>{{ student.package}}</td>
             <td>{{ student.email}}</td>
-            <td>{{ student.address.city}}</td>
 
             </tr>
     </tbody>
     </table>
+
+    <ul class="pagination">
+        <li class="page-item" (click)="pagination(1)"><a class="page-link">1</a></li>
+        <li class="page-item" (click)="pagination(2)"><a class="page-link">2</a></li>
+        <li class="page-item" (click)="pagination(3)"><a class="page-link">3</a></li>
+      </ul>
