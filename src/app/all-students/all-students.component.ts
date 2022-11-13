@@ -50,4 +50,15 @@ export class AllStudentsComponent implements OnInit {
     )
   }
 
+  filter(){
+    this._studentService.getFilteredStudents(this.term).subscribe(
+      (data:any)=>{
+        this.students = data;
+      },
+      (err:any)=>{
+        alert("Internal server error");
+      }
+    )
+  }
+
 }

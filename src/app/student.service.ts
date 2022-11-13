@@ -25,6 +25,11 @@ export class StudentService {
     return this._httpClient.get('https://62b9299dff109cd1dc8ca34f.mockapi.io/students'+'?sortBy='+column+'&order='+order);
   }
 
+  getFilteredStudents(term:string):Observable<any>{
+    return this._httpClient.get("https://62b9299dff109cd1dc8ca34f.mockapi.io/students?filter="+term);
+  }
+
+
 
    
 }
