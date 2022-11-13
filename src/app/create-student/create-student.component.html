@@ -2,27 +2,96 @@
 <form [formGroup]="studentForm">
     <label>Name: </label>
     <input type="text" formControlName="name"><br>
+    <div class="error" *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.invalid">
+        <p *ngIf="studentForm.get('name')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('name')?.errors?.['minlength']">Min 3 chars required</p>
+        <p *ngIf="studentForm.get('name')?.errors?.['maxlength']">Max 10 chars required</p>
+    </div>
     <label>Gender: </label>
-    <input type="text" formControlName="gender"><br>
+    <input type="radio" name="gender" formControlName="male">
+    <div class="error" *ngIf="studentForm.get('gender')?.touched && studentForm.get('gender')?.invalid"></div>
+    <label>Male</label>
+    <input type="radio" name="gender" formControlName="female">
+    <label>Female</label><br>
     <label>Mobile: </label>
     <input type="text" formControlName="mobile"><br>
+    <div class="error" *ngIf="studentForm.get('mobile')?.touched && studentForm.get('mobile')?.invalid">
+        <p *ngIf="studentForm.get('mobile')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('mobile')?.errors?.['min']">Phone no should be min 10 digits</p>
+        <p *ngIf="studentForm.get('mobile')?.errors?.['max']">phone no should be max 10 digits</p>
+
+    </div>
     <label>Email: </label>
     <input type="text" formControlName="email"><br>
     <label>Batch: </label>
     <input type="number" formControlName="batch"><br>
 
-    <h1>Address</h1>
-    <label>City</label>
+    <label>Address:</label>
+    <label>City:</label>
     <input type="text" formControlName="city"><br>
-    <label>Mandal</label>
+    <label>Mandal:</label>
     <input type="text" formControlName="mandal"><br>
-    <label>District</label>
+    <label>District:</label>
     <input type="text" formControlName="district"><br>
-    <label>State</label>
+    <label>State:</label>
     <input type="text" formControlName="state"><br>
-    <label>Pincode</label>
+    <label>Pincode:</label>
     <input type="number" formControlName="pincode"><br>
+    <div class="error" *ngIf="studentForm.get('pincode')?.touched && studentForm.get('pincode')?.invalid">
+        <p *ngIf="studentForm.get('pincode')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('pincode')?.errors?.['min']">pincode no should be min 6 digits</p>
+        <p *ngIf="studentForm.get('pincode')?.errors?.['max']">pincode no should be max 6 digits</p>
+    </div>
 
-    
+    <h1>Education:</h1>
+    <button class="btn btn-primary" (click)="add()">Add education details</button>
+    <div formArrayName="educations">
+        <div *ngFor="let education of educationsFormArray?.controls;let i=index">
+            <div formGroupName="{{i}}">
+                <input type="text" formControlName="qualification" placeholder="qualification"><br>
+                <input type="text" formControlName="year" placeholder="year"><br>
+                <input type="number" formControlName="percentage" placeholder="percentage"><br>
+                <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+            </div>
+        </div>
+    </div>
 
+
+    <h1>Company:</h1>
+    <label>Name:</label>
+    <input type="text" formControlName="name"><br>
+    <div class="error" *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.invalid">
+        <p *ngIf="studentForm.get('name')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('name')?.errors?.['minlength']">min 3 chars required</p>
+        <p *ngIf="studentForm.get('pincode')?.errors?.['maxlength']">max 10 chars required</p>
+    </div>
+    <label>Location:</label>
+    <input type="text" formControlName="location"><br>
+    <label>Package:</label>
+    <input type="number" formControlName="package"><br>
+    <div class="error" *ngIf="studentForm.get('package')?.touched && studentForm.get('package')?.invalid">
+        <p *ngIf="studentForm.get('package')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('package')?.errors?.['min']">package should be min 6 digits</p>
+        <p *ngIf="studentForm.get('package')?.errors?.['max']">package should be max 6 digits</p>
+    </div>
+    <label>OfferDate:</label>
+    <input type="date" formControlName="offerdate"><br>
+
+    <label>Source Type:</label>
+    <input type="radio" name="source type" formControlName="source type" value="direct">
+    <label>Direct</label>
+    <input type="radio" name="source type" formControlName="source type" value="refer">
+    <label>Refer</label>
+    <div *ngIf="studentForm.get('source type')?.value=='direct'">
+        <label>source form:</label>
+        <input type="text" formControlName="sourceForm">
+    </div>
+    <div *ngIf="studentForm.get('source type')?.value=='refer'">
+        <label>referal name:</label>
+        <input type="text" formControlName="referalName">
+    </div><br>
+
+    <button (click)="submit()">Submit</button>
 </form>
+
+
