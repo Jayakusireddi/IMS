@@ -1,0 +1,26 @@
+<table border="table-dark">
+    <thead>
+        <tr>
+            <th>CreatedAt</th>
+            <th>name</th>
+            <th>Avatar</th>
+            <th>Id</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Address</th>
+    </tr> </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{ student.createdAt }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.avatar }}</td>
+            <td>{{ student.id }}</td>
+            <td>{{ student.gender}}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.email}}</td>
+            <td>{{ student.address.city}}</td>
+
+            </tr>
+    </tbody>
+    </table>
